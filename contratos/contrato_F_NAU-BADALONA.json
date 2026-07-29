@@ -1,0 +1,25 @@
+{
+  "proyecto": "OBRA-2024-NAU-BADALONA",
+  "fecha_adjudicacion": "2024-10-30",
+  "moneda": "EUR",
+  "lineas": [
+    {
+      "concepto": "Falso techo de cartón-yeso",
+      "medicion": 380,
+      "ud": "m2",
+      "importe_unitario": 22.8
+    },
+    {
+      "concepto": "Aislamiento XPS 50mm en fachada",
+      "medicion": 300,
+      "ud": "m2",
+      "importe_unitario": 18.4
+    },
+    {
+      "concepto": "Excavación en zanja",
+      "medicion": 320,
+      "ud": "m2",
+      "importe_unitario": 11.2
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "proyecto": "OBRA-2024-TORRE-MARINA",
+  "fecha_adjudicacion": "2024-03-22",
+  "moneda": "EUR",
+  "lineas": [
+    {
+      "concepto": "Hormigon HA-25 losa cimentacion",
+      "medicion": 96,
+      "ud": "m3",
+      "importe_unitario": 249.0
+    },
+    {
+      "concepto": "Fabrica ladrillo perforado medio pie",
+      "medicion": 260,
+      "ud": "m2",
+      "importe_unitario": 40.9
+    },
+    {
+      "concepto": "Aislamiento XPS 40 mm cubierta",
+      "medicion": 220,
+      "ud": "m2",
+      "importe_unitario": 15.1
+    }
+  ]
+}
