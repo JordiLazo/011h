@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>011h - Sistema de detección de anomalías en contratos</title>
+<link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{
+  --paper:#eef0f1;--card:#fff;--ink:#141d29;--ink2:#4a5665;--line:#dfe3e7;
+  --ok:#1f7a54;--ok-bg:#e6f2ec;--mid:#b5710a;--mid-bg:#fbf0dd;
+  --hi:#a51f28;--hi-bg:#fae7e8;--grey:#6b7683;--grey-bg:#eceef0;--accent:#1b2a44;--blue:#1f5fbf;
+  --sans:'Inter',system-ui,sans-serif;--disp:'Space Grotesk',var(--sans);--mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px 80px}
+header{border-bottom:2px solid var(--accent);padding:26px 0 18px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:40px;height:40px;border-radius:9px;display:block}
+.brand .kicker{font-family:var(--mono);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);font-weight:500}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(24px,4vw,34px);line-height:1.05;margin:14px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--ink2);max-width:64ch;font-size:15px}
+
+/* controls */
+.controls{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:26px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--sans);font-weight:600;font-size:14px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:10px;padding:11px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:#fff;color:var(--accent)}
+.btn.plain{background:#fff;color:var(--ink2);border-color:var(--line);font-weight:500}
+.btn:hover{opacity:.92}.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status{display:flex;flex-wrap:wrap;gap:22px;margin-top:16px;font-size:13.5px}
+.status .item .k{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--grey)}
+.status .item .v{font-weight:600;margin-top:2px}
+.status .item .v.none{color:var(--grey);font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip{font-family:var(--mono);font-size:11.5px;background:var(--grey-bg);border-radius:7px;padding:5px 10px;color:var(--ink2);display:flex;align-items:center;gap:7px}
+.chip.err{background:var(--hi-bg);color:var(--hi)}
+.chip .x{cursor:pointer;font-weight:700;opacity:.6}.chip .x:hover{opacity:1}
+
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:48px 24px;text-align:center;color:var(--ink2)}
+.empty .big{font-family:var(--disp);font-size:19px;color:var(--ink);margin-bottom:6px}
+
+/* total cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.tcard.cat{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tcard .lbl{font-size:13px;color:var(--ink2)}.tcard.cat .lbl{color:#c3ccdb}
+.tcard .val{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin-top:6px;line-height:1}
+.tcard .foot{font-family:var(--mono);font-size:11.5px;color:var(--ink2);margin-top:9px}.tcard.cat .foot{color:#9fb0c6}
+.delta{font-weight:600}.delta.up{color:#ffb4b4}.delta.down{color:#9fe0c0}
+
+/* sections + tables */
+.sec{margin:30px 0 0}
+.sec-h{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:14px;flex-wrap:wrap}
+.sec-h h2{font-family:var(--disp);font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em}
+.sel{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fff;color:var(--ink)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:10px 11px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);font-weight:600;background:#f7f8f9;position:sticky;top:0;vertical-align:middle;white-space:nowrap}
+td.dcol{white-space:normal;min-width:165px}
+td.num,th.num{text-align:right;font-family:var(--mono)}
+td.fname{white-space:normal;min-width:128px;font-family:var(--mono);font-size:11px;color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#f9fafb}
+.code{font-family:var(--mono);color:var(--accent);font-weight:600}
+.badge{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--grey-bg);color:var(--accent);border-radius:6px;padding:2px 7px}
+.vp{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-weight:700;font-size:13px;padding:4px 10px;border-radius:8px}
+.vp.up{background:var(--hi-bg);color:var(--hi)}.vp.down{background:var(--ok-bg);color:var(--ok)}.vp.neg{background:#e5edfb;color:var(--blue)}
+.al{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;padding:5px 12px;border-radius:8px;letter-spacing:.03em;text-align:center}
+.al.ok{background:var(--ok);color:#fff}
+.al.rev{background:var(--mid);color:#fff}
+.al.man{background:var(--hi);color:#fff}
+.scroll{max-height:420px;overflow-y:auto}
+.muted{color:var(--grey)}
+.togglebar{margin-top:10px}
+.link{font-family:var(--mono);font-size:12.5px;color:var(--accent);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+.method{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-top:26px;font-size:13px;color:var(--ink2)}
+.method b{color:var(--ink)}
+.hidden{display:none!important}
+@media(max-width:720px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><img src="data:image/jpeg;base64,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" alt="011h">
+    <span class="kicker">Sistema de detección de anomalías en contratos</span></div>
+  <h1>Validación de contratos</h1>
+  <p class="sub">Sube el catálogo de precios y los contratos. La herramienta empareja cada línea con su partida del catálogo y marca lo que hay que revisar. Todo ocurre en tu navegador: nada se sube a internet.</p>
+</header>
+
+<div class="controls">
+  <div class="btnrow">
+    <button class="btn" id="addContracts">Adjuntar contratos</button>
+    <button class="btn ghost" id="addCatalog">Subir catálogo</button>
+    <button class="btn plain" id="clearCatalog">Vaciar catálogo</button>
+    <button class="btn plain" id="clearContracts">Vaciar contratos</button>
+    <input type="file" id="fileContracts" multiple accept=".pdf,.xlsx,.xls,.csv,.tsv,.json,.txt" class="hidden">
+    <input type="file" id="fileCatalog" accept=".xlsx,.xls,.csv,.tsv" class="hidden">
+  </div>
+  <div class="status">
+    <div class="item"><div class="k">Catálogo</div><div class="v none" id="catName">Ninguno cargado</div></div>
+    <div class="item"><div class="k">Códigos detectados</div><div class="v" id="catCount">0</div></div>
+    <div class="item"><div class="k">Contratos</div><div class="v" id="conCount">0</div></div>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<div id="app"></div>
+
+<div class="method">
+  <p><b>Cómo se decide la alerta:</b> <b>OK</b> = emparejado y dentro de ±15% del catálogo · <b>REVISAR</b> = emparejado pero el precio se desvía ≥15% · <b>MATCH MANUAL</b> = no se encontró partida fiable (mano de obra, partida alzada, o precio de referencia incoherente): revísalo a mano. La herramienta nunca inventa un emparejamiento. Comparación sin IVA.</p>
+  <p><b>Color de la varianza %:</b> <b style="color:var(--hi)">rojo ▲</b> = el precio del contrato supera al del catálogo en +7% o más (sobrecoste a vigilar) · <b style="color:var(--ok)">verde ▲</b> = entre 0 y +7% (dentro de tolerancia) · <b style="color:var(--blue)">azul ▼</b> = negativo, el contrato está por debajo del catálogo.</p>
+</div>
+</div>
+
+<script>
+/* ================= motor ================= */
+function stripAccents(s){return String(s).normalize("NFKD").replace(/[\u0300-\u036f]/g,"");}
+const STOP=new Set(["en","de","del","la","el","los","las","con","y","a","para","por","un","una","al","cto"]);
+const SYN=[
+ [/\bpladur\b/g,"pyl placa yeso laminado"],[/carton[- ]?yeso/g,"pyl placa yeso laminado"],
+ [/\bpyl\b/g,"pyl placa yeso laminado"],[/placa yeso laminado/g,"pyl placa yeso laminado"],
+ [/\bxps\b/g,"poliestireno extruido"],[/poliestireno extruido/g,"poliestireno extruido"],
+ [/\brpt\b/g,"rotura puente termico"],[/rotura de puente termico/g,"rotura puente termico"],
+ [/\balu\b/g,"aluminio"],[/acero para armar/g,"acero corrugado b500s"],[/acero corrugado b500s/g,"acero corrugado b500s"],
+ [/medio pie/g,"medio_pie"],[/1\/2 pie/g,"medio_pie"],[/24 ?cm/g,"medio_pie"],
+ [/gres porcelanico/g,"gres porcelanico"],[/porcelanico/g,"gres porcelanico"],
+];
+function canonConcrete(s){
+  s=s.replace(/ha[- ]?(\d{2})(?:\/[a-z0-9\/]+)?/g,"ha$1");
+  s=s.replace(/hormigon\s+(\d{2})\s*n\/?mm2?/g,"hormigon ha$1");
+  s=s.replace(/hormigon\s+ha(\d{2})/g,"hormigon ha$1");
+  s=s.replace(/mortero[^]*?m[- ]?5/g,"mortero m5");
+  s=s.replace(/mortero\s*1:6/g,"mortero m5");
+  return s;
+}
+function normalize(text){
+  let s=stripAccents(text).toLowerCase().replace(/-/g," ").replace(/\./g," ");
+  s=canonConcrete(s);
+  for(const [re,rep] of SYN) s=s.replace(re,rep);
+  s=s.replace(/[^a-z0-9_ ]/g," ").replace(/\s+/g," ").trim();
+  return s.split(" ").filter(t=>t.length>1&&!STOP.has(t));
+}
+const UNITMAP={"m3":"m3","m³":"m3","m2":"m2","m²":"m2","ml":"ml","kg":"kg","ud":"ud","u":"ud","h":"h","hora":"h","horas":"h","mes":"mes","l":"l"};
+function normUnit(u){if(u==null)return null;let x=stripAccents(u).toLowerCase().trim().replace(/\s/g,"");return UNITMAP[x]||x||null;}
+function parseNum(x){
+  if(x==null)return null;let s=String(x).replace(/€/g,"").replace(/\s/g,"").trim();
+  if(s==="")return null;const hasC=s.includes(","),hasD=s.includes(".");
+  if(hasC&&hasD){if(s.lastIndexOf(",")>s.lastIndexOf("."))s=s.replace(/\./g,"").replace(",",".");else s=s.replace(/,/g,"");}
+  else if(hasC){s=s.replace(",",".");}
+  else if(hasD){const d=(s.match(/\./g)||[]).length;if(d>1||/\.\d{3}$/.test(s))s=s.replace(/\./g,"");}
+  const n=parseFloat(s);return isNaN(n)?null:n;
+}
+const COLS={"descripcion":"desc","concepto":"desc","ud. de obra":"desc","cantidad":"qty","medicion":"qty",
+ "unidad":"unit","ud":"unit","precio_unitario_eur":"price","importe_unitario":"price","precio":"price"};
+function splitLine(l,d){return l.split(d).map(c=>c.replace(/^"|"$/g,"").trim());}
+function matrixFromText(text,forceDelim){
+  const lines=text.split(/\r?\n/).filter(l=>l.trim()!=="");
+  let d=forceDelim;
+  if(!d){const h=lines[0]||"";const c={";":h.split(";").length,",":h.split(",").length,"\t":h.split("\t").length};d=Object.keys(c).sort((a,b)=>c[b]-c[a])[0];}
+  return lines.map(l=>splitLine(l,d));
+}
+function recordsFromMatrix(m){
+  let hi=m.findIndex(r=>r.some(c=>stripAccents(String(c)).toLowerCase().includes("descripcion")));
+  if(hi<0)return [];
+  const head=m[hi].map(h=>stripAccents(String(h)).toLowerCase().trim());
+  const cmap=head.map(h=>COLS[h]||null);
+  const out=[];
+  for(let i=hi+1;i<m.length;i++){const r=m[i];if(!r||!r.some(x=>String(x).trim()!==""))continue;
+    const rec={};cmap.forEach((c,j)=>{if(c)rec[c]=r[j];});if(rec.desc&&String(rec.desc).trim())out.push(rec);}
+  return out;
+}
+function parseJson(text){let o;try{o=JSON.parse(text);}catch(e){return [];}
+  const arr=o.lineas||o.items||o.partidas||[];
+  return arr.map(l=>({desc:l.concepto||l.descripcion||l.desc,qty:l.medicion||l.cantidad||l.qty,
+    unit:l.ud||l.unidad||l.unit,price:l.importe_unitario||l.precio_unitario_eur||l.precio||l.importe}));}
+function parsePdfText(text){const out=[];
+  for(const line of text.split(/\r?\n/)){const m=line.match(/^(.+?)\s+([\d.,]+)\s+(m3|m2|ml|kg|ud|h|mes|l)\s+([\d.,]+)/i);
+    if(m)out.push({desc:m[1].trim(),qty:m[2],unit:m[3],price:m[4]});}
+  return out;}
+function readAs(file,how){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;how==="buf"?r.readAsArrayBuffer(file):r.readAsText(file,"utf-8");});}
+async function pdfToText(buf){const doc=await pdfjsLib.getDocument({data:buf}).promise;let t="";
+  for(let p=1;p<=doc.numPages;p++){const pg=await doc.getPage(p);const tc=await pg.getTextContent();const rows={};
+    tc.items.forEach(it=>{const y=Math.round(it.transform[5]);(rows[y]=rows[y]||[]).push(it);});
+    Object.keys(rows).map(Number).sort((a,b)=>b-a).forEach(y=>{t+=rows[y].sort((a,b)=>a.transform[4]-b.transform[4]).map(o=>o.str).join(" ")+"\n";});}
+  return t;}
+async function parseContract(name,file){
+  const ext=(name.split(".").pop()||"").toLowerCase();
+  if(ext==="pdf"){if(typeof pdfjsLib==="undefined")throw "pdf";return parsePdfText(await pdfToText(await readAs(file,"buf")));}
+  if(ext==="xlsx"||ext==="xls"){if(typeof XLSX==="undefined")throw "xlsx";
+    const wb=XLSX.read(await readAs(file,"buf"),{type:"array"});
+    return recordsFromMatrix(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:false}));}
+  if(ext==="json")return parseJson(await readAs(file,"text"));
+  if(ext==="tsv")return parseDelimitedText(await readAs(file,"text"),"\t");
+  return parseDelimitedText(await readAs(file,"text"),null);
+}
+function parseDelimitedText(text,fd){return recordsFromMatrix(matrixFromText(text,fd));}
+
+async function parseCatalog(name,file){
+  const ext=(name.split(".").pop()||"").toLowerCase();let matrix;
+  if(ext==="xlsx"||ext==="xls"){if(typeof XLSX==="undefined")throw "xlsx";
+    const wb=XLSX.read(await readAs(file,"buf"),{type:"array"});
+    matrix=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:false,dateNF:"yyyy-mm-dd"});
+  }else{matrix=matrixFromText(await readAs(file,"text"),ext==="tsv"?"\t":null);}
+  let hi=matrix.findIndex(r=>r.some(c=>{const s=stripAccents(String(c)).toLowerCase();return s.includes("codigo")||s.includes("descripcion");}));
+  if(hi<0)hi=0;
+  const headers=matrix[hi].map(h=>String(h).trim());
+  const low=headers.map(h=>stripAccents(h).toLowerCase());
+  const find=k=>low.findIndex(h=>h.includes(k));
+  const ic=find("codigo"),idd=find("descripcion"),iu=find("unidad"),ip=low.findIndex(h=>h.includes("precio"));
+  const rows=[];
+  for(let i=hi+1;i<matrix.length;i++){const r=matrix[i];if(!r||idd<0||!r[idd])continue;
+    const raw={};headers.forEach((h,j)=>raw[h]=r[j]!=null?r[j]:"");
+    rows.push({raw,codigo:ic>=0?r[ic]:"",descripcion:String(r[idd]),unit:normUnit(iu>=0?r[iu]:null),
+      precio:parseNum(ip>=0?r[ip]:null),tokens:new Set(normalize(r[idd]))});}
+  return {name,headers,rows};
+}
+
+const NOCOMP=/alzada|ayudas|alquiler|mano de obra|oficial|grua/;
+function jaccard(a,b){if(!a.size||!b.size)return 0;let i=0;a.forEach(t=>{if(b.has(t))i++;});return i/(a.size+b.size-i);}
+function matchLine(desc,unit){
+  if(!CATALOG)return {ref:null,score:0,status:"sin_catalogo"};
+  const nd=stripAccents(String(desc)).toLowerCase();
+  if(NOCOMP.test(nd)||unit==="h"||unit==="mes")return {ref:null,score:0,status:"no_comparable"};
+  const toks=new Set(normalize(desc));const cand=CATALOG.rows.filter(c=>c.unit===unit);
+  if(!cand.length)return {ref:null,score:0,status:"sin_unidad"};
+  let best=null,bs=0;for(const c of cand){const s=jaccard(toks,c.tokens);if(s>bs){bs=s;best=c;}}
+  if(bs<0.30)return {ref:null,score:bs,status:"sin_referencia"};
+  return {ref:best,score:bs,status:"ok"};
+}
+function contractLabel(name){const m=name.match(/contrato[_\- ]([^_\-.]+)/i);return m?m[1].toUpperCase():name.replace(/\.[^.]+$/,"");}
+function buildRecord(r){
+  const contrato=r.contrato,file=r.file;
+  const unit=normUnit(r.unit),qty=parseNum(r.qty),price=parseNum(r.price);
+  const {ref,score,status}=matchLine(r.desc,unit);
+  const rec={contrato,file,linea:String(r.desc||"").trim(),unidad:unit,cantidad:qty,precio_contrato:price,
+    estado:status,codigo:null,ref_desc:null,precio_ref:null,desviacion_pct:null,confianza:null,nota:null};
+  if(status==="ok"){
+    rec.codigo=ref.codigo;rec.ref_desc=ref.descripcion;rec.precio_ref=ref.precio;
+    if(price!=null&&ref.precio){const dev=(price-ref.precio)/ref.precio;rec.desviacion_pct=Math.round(dev*1000)/10;
+      const ratio=price/ref.precio;
+      if(ratio>5||ratio<0.2){rec.estado="revisar_match";rec.nota="Precio de referencia incoherente ("+fmt2(ref.precio)+"): probable error de unidad o de código.";}
+    }
+    rec.confianza=score>=0.6?"alta":(score>=0.45?"media":"baja");
+  }
+  return rec;
+}
+function alertaOf(r){
+  if(r.estado==="ok")return Math.abs(r.desviacion_pct||0)>=15?"REVISAR":"OK";
+  return r.estado==="revisar_match"?"MATCH MANUAL":"MATCH MANUAL";
+}
+
+/* ================= estado ================= */
+let CATALOG=null, RAW=[], FILES=[], LINES=[], filter="TODOS", showFullCat=false;
+const eur=n=>n==null?"—":new Intl.NumberFormat("es-ES",{maximumFractionDigits:0}).format(n)+" €";
+const fmt2=n=>n==null?"—":new Intl.NumberFormat("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+" €";
+const num=n=>n==null?"?":new Intl.NumberFormat("es-ES").format(n);
+function recompute(){LINES=RAW.map(buildRecord);render();}
+
+async function addContractFiles(list){
+  for(const f of list){
+    try{const recs=await parseContract(f.name,f);
+      if(!recs.length){FILES.push({name:f.name,n:0,err:"sin líneas"});continue;}
+      const c=contractLabel(f.name);recs.forEach(r=>RAW.push({contrato:c,file:f.name,desc:r.desc,qty:r.qty,unit:r.unit,price:r.price}));
+      FILES.push({name:f.name,n:recs.length});
+    }catch(e){FILES.push({name:f.name,n:0,err:e==="pdf"?"PDF no disponible sin conexión":e==="xlsx"?"Excel no disponible sin conexión":"no se pudo leer"});}
+  }
+  recompute();
+}
+async function setCatalog(file){
+  try{CATALOG=await parseCatalog(file.name,file);}catch(e){alert("No se pudo leer el catálogo. Debe tener columnas código, descripción, unidad y precio.");return;}
+  recompute();
+}
+function clearCatalog(){CATALOG=null;showFullCat=false;recompute();}
+function clearContracts(){RAW=[];FILES=[];filter="TODOS";render();}
+
+/* ================= render ================= */
+function renderStatus(){
+  document.getElementById("catName").textContent=CATALOG?CATALOG.name:"Ninguno cargado";
+  document.getElementById("catName").className="v"+(CATALOG?"":" none");
+  document.getElementById("catCount").textContent=CATALOG?CATALOG.rows.length:0;
+  document.getElementById("conCount").textContent=[...new Set(RAW.map(r=>r.file))].length;
+  document.getElementById("chips").innerHTML=FILES.map((f,i)=>
+    `<span class="chip ${f.err?'err':''}">${f.name} · ${f.err?f.err:f.n+' líneas'}<span class="x" data-i="${i}">✕</span></span>`).join("");
+}
+function render(){
+  renderStatus();
+  const app=document.getElementById("app");
+  if(!RAW.length){
+    app.innerHTML=`<div class="empty"><div class="big">Aún no hay contratos cargados</div>
+      Pulsa <b>“Subir catálogo”</b> y luego <b>“Adjuntar contratos”</b> para empezar.${CATALOG?"":"<br><span class='muted'>Sube primero el catálogo para poder comparar precios.</span>"}</div>`;
+    return;
+  }
+  const cons=[...new Set(LINES.map(r=>r.file))].sort();
+  const view=LINES.filter(r=>filter==="TODOS"||r.file===filter);
+
+  // totales
+  let totC=0,totK=0;
+  for(const r of view){const q=r.cantidad!=null?r.cantidad:null;
+    if(r.precio_contrato!=null&&q!=null)totC+=r.precio_contrato*q;
+    if(r.estado==="ok"&&r.precio_ref!=null&&q!=null)totK+=r.precio_ref*q;
+    else if(r.precio_contrato!=null&&q!=null)totK+=r.precio_contrato*q;}
+  const delta=totC-totK;
+
+  // fila tabla
+  const sevVar=d=>d==null?"":(Math.abs(d)>=15?(d>0?"up":"down"):"");
+  const varCell=r=>{if(r.desviacion_pct==null)return `<span class="muted">—</span>`;
+    const d=r.desviacion_pct,cls=d>=7?"up":(d<0?"neg":"down");const arrow=d<0?"▼":"▲";
+    const s=(d>0?"+":"")+d.toLocaleString("es-ES",{minimumFractionDigits:1,maximumFractionDigits:1})+" %";
+    return `<span class="vp ${cls}">${arrow} ${s}</span>`;};
+  const alClass={"OK":"ok","REVISAR":"rev","MATCH MANUAL":"man"};
+  const rowsHtml=view.map(r=>{const al=alertaOf(r);
+    return `<tr>
+      <td class="fname">${r.file}</td>
+      <td class="dcol">${r.linea}</td>
+      <td class="num">${fmt2(r.precio_contrato)}</td>
+      <td class="dcol">${r.ref_desc?('<span class="code">'+(r.codigo||"")+'</span> '+r.ref_desc):'<span class="muted">—</span>'}</td>
+      <td class="num">${fmt2(r.precio_ref)}</td>
+      <td class="num">${varCell(r)}</td>
+      <td class="num">${num(r.cantidad)}</td>
+      <td>${r.unidad||'<span class="muted">—</span>'}</td>
+      <td><span class="al ${alClass[al]}">${al}</span></td>
+    </tr>`;}).join("");
+
+  // partidas de catálogo usadas (verbatim)
+  const usados=[...new Set(LINES.filter(r=>r.codigo).map(r=>r.codigo))];
+  const usadasRows=CATALOG?CATALOG.rows.filter(c=>usados.includes(c.codigo)):[];
+  const catRows=showFullCat?(CATALOG?CATALOG.rows:[]):usadasRows;
+  const catTable=CATALOG?`
+    <div class="tablewrap scroll"><table><thead><tr>
+      ${CATALOG.headers.map(h=>`<th class="${/descrip/i.test(h)?'dcol':''}">${h}</th>`).join("")}
+    </tr></thead><tbody>
+      ${catRows.map(c=>`<tr>${CATALOG.headers.map(h=>{
+        const v=c.raw[h];const isDesc=/descrip/i.test(h);const isCode=/codigo/i.test(h);
+        return `<td class="${isDesc?'dcol':''}">${isCode?'<span class="code">'+v+'</span>':(v==null?'':v)}</td>`;}).join("")}</tr>`).join("")}
+    </tbody></table></div>
+    <div class="togglebar"><button class="link" id="toggleCat">${showFullCat?"Ver solo las partidas usadas ("+usadasRows.length+")":"Ver catálogo completo ("+CATALOG.rows.length+")"}</button></div>`
+    :`<div class="empty">Sube el catálogo para ver sus partidas.</div>`;
+
+  app.innerHTML=`
+  <div class="cards">
+    <div class="tcard"><div class="lbl">Total del contrato</div><div class="val">${eur(totC)}</div>
+      <div class="foot">${view.length} líneas · lo que pagarías tal cual</div></div>
+    <div class="tcard cat"><div class="lbl">Total a precio de catálogo</div><div class="val">${eur(totK)}</div>
+      <div class="foot">${delta>=0?'sobrecoste':'ahorro'}: <span class="delta ${delta>=0?'up':'down'}">${delta>=0?'+':''}${eur(delta)}</span> · partidas sin referencia a precio de contrato</div></div>
+  </div>
+
+  <section class="sec">
+    <div class="sec-h"><h2>Líneas del contrato</h2>
+      ${cons.length>1?`<select class="sel" id="cfilter">
+        <option value="TODOS"${filter==="TODOS"?" selected":""}>Todos los contratos</option>
+        ${cons.map(c=>`<option value="${c}"${filter===c?" selected":""}>${c}</option>`).join("")}
+      </select>`:""}
+    </div>
+    <div class="tablewrap"><table><thead><tr>
+      <th class="fname">Contrato</th><th class="dcol">Descripción contrato</th><th class="num">Precio contrato</th>
+      <th class="dcol">Descripción catálogo</th><th class="num">Precio catálogo</th><th class="num">Varianza %</th>
+      <th class="num">Cantidad</th><th>Unidad</th><th>Alerta</th>
+    </tr></thead><tbody>${rowsHtml}</tbody></table></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>Partidas del catálogo detectadas</h2></div>
+    ${catTable}
+  </section>`;
+}
+
+/* ================= eventos ================= */
+document.getElementById("addContracts").addEventListener("click",()=>document.getElementById("fileContracts").click());
+document.getElementById("addCatalog").addEventListener("click",()=>document.getElementById("fileCatalog").click());
+document.getElementById("clearCatalog").addEventListener("click",clearCatalog);
+document.getElementById("clearContracts").addEventListener("click",clearContracts);
+document.getElementById("fileContracts").addEventListener("change",async e=>{await addContractFiles(e.target.files);e.target.value="";});
+document.getElementById("fileCatalog").addEventListener("change",async e=>{if(e.target.files[0])await setCatalog(e.target.files[0]);e.target.value="";});
+document.getElementById("chips").addEventListener("click",e=>{const x=e.target.closest(".x");if(!x)return;
+  const i=+x.dataset.i;const nm=FILES[i].name;RAW=RAW.filter(r=>r.file!==nm);FILES.splice(i,1);recompute();});
+document.getElementById("app").addEventListener("change",e=>{if(e.target.id==="cfilter"){filter=e.target.value;render();}});
+document.getElementById("app").addEventListener("click",e=>{if(e.target.id==="toggleCat"){showFullCat=!showFullCat;render();}});
+
+if(typeof pdfjsLib!=="undefined")pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+render();
+</script>
+</body></html>
