@@ -1,5 +1,3 @@
-# Prueba técnica — Forward Deployed Engineer (011h)
-
 ## La situación
 
 En 011h, el equipo de compras recibe **actas de adjudicación de obra** de constructoras y proveedores. Cada uno las manda como quiere —un PDF, un CSV, un export de su ERP— y con su propia forma de nombrar las cosas.
