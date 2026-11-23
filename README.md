@@ -1,30 +1,30 @@
-## La situación
-
-En la empresa, el equipo de compras recibe actas de adjudicación de obra de constructoras y proveedores. Cada uno las envía en su propio formato (un PDF, un CSV, un export de su ERP) y con su propia forma de nombrar las cosas.
-
-Por otro lado existe el banco de partidas: el catálogo interno de unidades de obra, con código, descripción, unidad y precio de referencia. Es la fuente contra la que, en principio, debería poder contrastarse lo que se factura.
-
-Un responsable de compras lo resume así:
-
-> *"Me llegan contratos de todas partes y en cualquier formato. Yo lo que necesito es saber si lo que estoy a punto de firmar está en línea con lo que pagamos normalmente, y qué líneas debería mirar con lupa antes de dar el OK. Ahora mismo eso lo hace una persona a mano, contrato a contrato, y no da abasto."*
-
-## Los datos disponibles
+## Context
  
-- `banco_de_partidas.xlsx`: el catálogo de referencia. Es un export real, con el ruido propio de un dato real.
-- `contratos/`: 7 adjudicaciones de 7 obras distintas, tal como llegaron, sin limpiar ni ordenar.
-## El objetivo
+At the company, the procurement team receives **construction award contracts** from contractors and suppliers. Each one sends them in their own format (a PDF, a CSV, an export from their ERP) and with their own way of naming things.
  
-Construir una herramienta que le resulte útil a la persona de compras en su día a día. La pregunta que guía el proyecto es: **si esta persona dedicara cinco minutos a usar la herramienta, ¿qué decisión podría tomar mejor que hoy?**
+On the other side there is the **work items catalog** (*banco de partidas*): the internal catalog of construction work units, with code, description, unit and reference price. It is the source against which, in principle, whatever is being invoiced should be checked.
  
-En concreto, la herramienta debería ayudarle a:
+A procurement manager sums it up like this:
  
-- Saber si un contrato está en línea con los precios habituales de la empresa.
-- Identificar qué líneas conviene revisar en detalle antes de aprobarlo.
-- Reducir el trabajo manual de revisar contrato por contrato.
-## Consideraciones
+> *"I get contracts from everywhere and in every format. What I need is to know whether what I'm about to sign is in line with what we normally pay, and which line items I should look at closely before giving the OK. Right now one person does this by hand, contract by contract, and they can't keep up."*
  
-- **Usuario no técnico:** el resultado debe ser claro y utilizable por alguien de compras, sin conocimientos de programación.
-- **Datos heterogéneos:** los contratos llegan en formatos y nomenclaturas distintas, y el catálogo contiene ruido. Parte del trabajo es entender y tratar esas inconsistencias.
-- **Funcionamiento real:** la solución tiene que funcionar con estos datos concretos, no quedarse en un planteamiento teórico.
-- **Alcance acotado:** se prioriza resolver primero lo que más valor aporta y dejar documentado qué queda fuera y qué se haría en una siguiente fase.
-- **Supuestos explícitos:** donde falte información o contexto, se asumen hipótesis razonadas y se documentan.
+## Available data
+ 
+- `banco_de_partidas.xlsx`: the reference catalog. It is a real export, with all the noise of real data.
+- `contratos/`: 7 award contracts for 7 different projects, exactly as they arrived, neither cleaned nor organized.
+## The goal
+ 
+Build a tool that is genuinely useful to the procurement person in their day-to-day work. The guiding question for the project is: **if this person spent five minutes using the tool, what decision could they make better than they can today?**
+ 
+Specifically, the tool should help them:
+ 
+- Know whether a contract is in line with the company's usual prices.
+- Identify which line items deserve a detailed review before approval.
+- Reduce the manual work of reviewing contracts one by one.
+## Considerations
+ 
+- **Non-technical user:** the result must be clear and usable by someone in procurement, with no programming knowledge.
+- **Heterogeneous data:** contracts arrive in different formats and naming conventions, and the catalog contains noise. Part of the work is understanding and handling those inconsistencies.
+- **Works for real:** the solution has to work with this specific data, not remain a theoretical approach.
+- **Focused scope:** the priority is to solve first what brings the most value, and to document what is left out and what would be done in a next phase.
+- **Explicit assumptions:** where information or context is missing, reasoned assumptions are made and documented.
